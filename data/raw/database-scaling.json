@@ -1,0 +1,16 @@
+{
+  "id": "database-scaling",
+  "title": "Database Scaling Strategies",
+  "category": "databases",
+  "content": "Scaling databases is one of the most critical challenges in system design. As your application grows, you need strategies to handle increased data volume and query load.\n\nVertical Scaling (Scale Up):\n- Add more resources (CPU, RAM, Storage) to existing server\n- Pros: Simple, no application changes needed\n- Cons: Hardware limits, expensive, single point of failure\n- Good for: Initial growth, when horizontal scaling is complex\n\nHorizontal Scaling (Scale Out):\n- Add more servers to distribute load\n- Requires data distribution strategy\n- More complex but more scalable\n\nReplication:\n- Master-Slave (Primary-Replica):\n  - One primary handles writes\n  - Multiple replicas handle reads\n  - Improves read performance\n  - Provides fault tolerance\n  \n- Master-Master (Multi-Primary):\n  - Multiple nodes handle writes\n  - More complex conflict resolution\n  - Higher availability\n\nPartitioning/Sharding:\n- Split data across multiple databases\n- Horizontal partitioning (sharding): Split rows across nodes\n- Vertical partitioning: Split columns into separate tables\n\nSharding Strategies:\n1. Range-based: Shard by range of values (e.g., user ID 1-1000, 1001-2000)\n2. Hash-based: Use hash function on key to determine shard\n3. Geographic: Shard by location for data locality\n4. Directory-based: Lookup table maps keys to shards\n\nChallenges with Sharding:\n- Cross-shard queries become complex\n- Transactions across shards are difficult\n- Rebalancing data when adding/removing shards\n- Hotspots if sharding key is not well-distributed\n\nDatabase Types:\n- SQL (Relational): ACID compliance, structured data\n- NoSQL: \n  - Document (MongoDB): Flexible schema\n  - Key-Value (Redis): Simple, fast\n  - Column-Family (Cassandra): Write-heavy workloads\n  - Graph (Neo4j): Relationship-focused data",
+  "source": "Database Scaling Guide",
+  "url": "https://example.com/database-scaling",
+  "tags": [
+    "databases",
+    "scaling",
+    "sharding",
+    "replication"
+  ],
+  "difficulty": "advanced",
+  "timestamp": "2025-11-16T04:51:16.980542"
+}

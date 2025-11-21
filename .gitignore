@@ -1,0 +1,41 @@
+
+# Local Netlify folder
+# Dependencies
+node_modules/
+venv/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+.netlify/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+data/processed/
+data/embeddings/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*

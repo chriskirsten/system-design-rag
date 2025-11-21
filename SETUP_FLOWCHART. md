@@ -1,0 +1,386 @@
+# Quick Setup Flowchart
+
+## Your Path from Zero to Running Scripts
+
+```
+START HERE
+    ↓
+┌─────────────────────────────────────────┐
+│  📥 STEP 1: Download All Files          │
+│  - Click each file link                  │
+│  - Save to new folder: system-design-rag │
+│  Time: 5 minutes                         │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  📂 STEP 2: Open Folder in VS Code      │
+│  Terminal: code system-design-rag        │
+│  Or: File → Open Folder                  │
+│  Time: 1 minute                          │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  🐍 STEP 3: Python Virtual Environment  │
+│  In VS Code terminal:                    │
+│  $ python3 -m venv venv                  │
+│  $ source venv/bin/activate              │
+│  $ pip install -r requirements.txt       │
+│  Time: 5 minutes                         │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  📦 STEP 4: Install Node Dependencies   │
+│  In VS Code terminal:                    │
+│  $ npm install                           │
+│  Time: 2 minutes                         │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  📖 STEP 5: READ FIRST                  │
+│  Open in VS Code:                        │
+│  1. PYTHON_CONVERSION_SUMMARY.md         │
+│  2. QUICK_START.md                       │
+│  3. README.md                            │
+│  Time: 10 minutes                        │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  ✅ STEP 6: Test Without API Keys       │
+│  $ npm run scrape    ← Creates 5 files   │
+│  $ npm run validate  ← Checks quality    │
+│  Time: 2 minutes                         │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  🔑 STEP 7: Get API Keys (Optional Now) │
+│  - OpenAI: platform.openai.com           │
+│  - Pinecone: app.pinecone.io             │
+│  - Update .env file                      │
+│  Time: 10 minutes                        │
+└─────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────┐
+│  🚀 STEP 8: Test Full Pipeline          │
+│  $ npm run chunk     ← Split content     │
+│  $ npm run embed     ← Create vectors    │
+│  $ npm run upload    ← Upload to DB      │
+│  Time: 5 minutes                         │
+└─────────────────────────────────────────┘
+    ↓
+  🎉 SUCCESS!
+  Your RAG data pipeline is running!
+```
+
+---
+
+## File Placement Visual Guide
+
+```
+📁 system-design-rag/          ← YOUR PROJECT FOLDER
+│
+├── 📄 README.md                    ← Start reading here
+├── 📄 PYTHON_CONVERSION_SUMMARY.md ← Read this FIRST
+├── 📄 QUICK_START.md
+├── 📄 PRD.md
+├── 📄 SETUP_PHASE1.md
+├── 📄 VSCODE_SETUP_GUIDE.md        ← You're reading this!
+├── 📄 ARCHITECTURE.md
+├── 📄 PROJECT_CHECKLIST.md
+├── 📄 PHASE1_SUMMARY.md
+│
+├── ⚙️ requirements.txt             ← Python dependencies
+├── ⚙️ package.json                 ← Node.js dependencies
+├── ⚙️ netlify.toml                 ← Netlify config
+├── ⚙️ .env.example                 ← Template for secrets
+├── 🔒 .env                         ← CREATE THIS (your API keys)
+├── 🚫 .gitignore                   ← Files to ignore
+│
+├── 📁 venv/                        ← Python virtual env (create with: python3 -m venv venv)
+├── 📁 node_modules/                ← Node packages (create with: npm install)
+│
+├── 📁 scripts/                     ← YOUR PYTHON SCRIPTS
+│   ├── 🐍 scrape_content.py       ← Run: npm run scrape
+│   ├── 🐍 validate_data.py        ← Run: npm run validate
+│   ├── 🐍 chunk_content.py        ← Run: npm run chunk
+│   ├── 🐍 generate_embeddings.py  ← Run: npm run embed
+│   └── 🐍 upload_to_pinecone.py   ← Run: npm run upload
+│
+└── 📁 data/
+    ├── 📁 raw/                     ← Created by scrape script
+    │   ├── load-balancing-basics.json
+    │   ├── caching-strategies.json
+    │   ├── database-scaling.json
+    │   ├── api-design-rest.json
+    │   ├── microservices-architecture.json
+    │   └── index.json
+    │
+    ├── 📁 processed/               ← Created by chunk script
+    │   ├── chunks.json
+    │   └── index.json
+    │
+    └── 📁 embeddings/              ← Created by embed script
+        ├── embeddings.json
+        └── index.json
+```
+
+---
+
+## Terminal Commands Cheat Sheet
+
+### Every Time You Open VS Code
+
+```bash
+# 1. Open terminal: Ctrl+` or Terminal → New Terminal
+# 2. Activate Python environment:
+source venv/bin/activate  # macOS/Linux
+# or
+venv\Scripts\activate     # Windows
+
+# You should see (venv) before your prompt:
+# (venv) user@computer:~/system-design-rag$
+```
+
+### Running Scripts (Two Ways)
+
+**Method 1: npm (Recommended)**
+```bash
+npm run scrape      # ← Easy to remember
+npm run validate
+npm run chunk
+npm run embed
+npm run upload
+```
+
+**Method 2: Python Directly**
+```bash
+python3 scripts/scrape_content.py     # ← See full output
+python3 scripts/validate_data.py
+python3 scripts/chunk_content.py
+python3 scripts/generate_embeddings.py
+python3 scripts/upload_to_pinecone.py
+```
+
+### Checking Status
+
+```bash
+# Where am I?
+pwd                       # Shows: .../system-design-rag
+
+# Is Python environment active?
+which python             # Shows: .../venv/bin/python
+
+# What's installed?
+pip list                 # Shows: openai, pinecone-client, etc.
+
+# What files were created?
+ls -la data/raw/         # Shows: 5 JSON files
+ls -la data/processed/   # Shows: chunks.json
+ls -la data/embeddings/  # Shows: embeddings.json
+```
+
+---
+
+## Your First 30 Minutes - Step by Step
+
+### Minute 0-10: Setup
+```bash
+# Create folder
+mkdir system-design-rag
+cd system-design-rag
+
+# Open in VS Code
+code .
+
+# Download files from Claude and place them in the folder
+# (see VSCODE_SETUP_GUIDE.md for detailed instructions)
+```
+
+### Minute 10-15: Python Environment
+```bash
+# In VS Code terminal:
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Minute 15-17: Node Dependencies
+```bash
+npm install
+```
+
+### Minute 17-22: Read Documentation
+```
+Open in VS Code:
+- PYTHON_CONVERSION_SUMMARY.md (3 min)
+- QUICK_START.md (2 min)
+```
+
+### Minute 22-25: First Test
+```bash
+npm run scrape
+# See: ✅ Successfully saved: 5 files
+```
+
+### Minute 25-27: Verify
+```bash
+npm run validate
+# See: 🎉 All validations passed!
+```
+
+### Minute 27-30: Explore
+```bash
+# Open data/raw/ folder in VS Code
+# Click on any .json file to see the content
+# Example: load-balancing-basics.json
+```
+
+**🎉 You're now running the project!**
+
+---
+
+## VS Code Layout Recommendation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  VS Code Window                                              │
+├──────────────┬──────────────────────────────────────────────┤
+│              │                                               │
+│  📁 EXPLORER │  📝 EDITOR                                    │
+│              │  ┌──────────────────────────────────────┐    │
+│  - scripts/  │  │ PYTHON_CONVERSION_SUMMARY.md         │    │
+│    - scrape  │  │                                      │    │
+│    - validate│  │ # Python Conversion Complete!        │    │
+│  - data/     │  │                                      │    │
+│    - raw/    │  │ Why Python for data pipeline...      │    │
+│  - docs/     │  └──────────────────────────────────────┘    │
+│              │                                               │
+├──────────────┴───────────────────────────────────────────────┤
+│  💻 TERMINAL                                                 │
+│  (venv) user@computer:~/system-design-rag$ npm run scrape   │
+│  🚀 System Design Content Scraper                            │
+│  ✅ Saved: load-balancing-basics.json                        │
+│  ✅ Saved: caching-strategies.json                           │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**To get this layout:**
+1. Open file in editor
+2. Press `` Ctrl+` `` to show terminal
+3. Drag terminal to resize
+4. Use `Cmd+B` to toggle Explorer sidebar
+
+---
+
+## What Success Looks Like
+
+### After npm run scrape:
+```
+✅ data/raw/ folder created
+✅ 5 JSON files with system design content
+✅ index.json file created
+✅ Green checkmarks in terminal output
+```
+
+### After npm run validate:
+```
+✅ All 5 files validated
+✅ No errors
+✅ 0 warnings
+✅ Message: "🎉 All validations passed!"
+```
+
+### In VS Code Explorer:
+```
+📁 data/
+  └── 📁 raw/
+      ├── ✅ load-balancing-basics.json (3.2 KB)
+      ├── ✅ caching-strategies.json (2.8 KB)
+      ├── ✅ database-scaling.json (3.5 KB)
+      ├── ✅ api-design-rest.json (3.1 KB)
+      ├── ✅ microservices-architecture.json (3.4 KB)
+      └── ✅ index.json (0.3 KB)
+```
+
+---
+
+## If You Get Stuck
+
+### Problem: Can't activate virtual environment
+
+**Try:**
+```bash
+# Make sure you created it
+ls -la venv/
+
+# If not there:
+python3 -m venv venv
+
+# Try different activation:
+source ./venv/bin/activate        # Current folder
+source ~/path/to/venv/bin/activate # Full path
+```
+
+### Problem: pip install fails
+
+**Try:**
+```bash
+# Update pip first
+python -m pip install --upgrade pip
+
+# Then install requirements
+python -m pip install -r requirements.txt
+```
+
+### Problem: npm run scrape does nothing
+
+**Check:**
+```bash
+# Is Python environment active?
+which python  # Should show: .../venv/bin/python
+
+# Can you run it directly?
+python3 scripts/scrape_content.py
+
+# Is the file there?
+ls -la scripts/scrape_content.py
+```
+
+### Problem: VS Code can't find Python
+
+**Fix:**
+1. Press `Cmd+Shift+P`
+2. Type: "Python: Select Interpreter"
+3. Choose: `./venv/bin/python`
+
+---
+
+## Next Steps Decision Tree
+
+```
+Did you successfully run 'npm run scrape'?
+├─ ✅ YES → Proceed to 'npm run validate'
+│   │
+│   Did validation pass?
+│   ├─ ✅ YES → Read PYTHON_CONVERSION_SUMMARY.md
+│   │   │
+│   │   Ready to get API keys?
+│   │   ├─ ✅ YES → Get OpenAI & Pinecone keys
+│   │   │            Update .env
+│   │   │            Run: npm run data:all
+│   │   │
+│   │   └─ ❌ NO → That's fine! 
+│   │              Explore the code
+│   │              Read documentation
+│   │              Come back later for API keys
+│   │
+│   └─ ❌ NO → Check error messages
+│                Read VSCODE_SETUP_GUIDE.md troubleshooting
+│
+└─ ❌ NO → Is Python environment activated?
+            ├─ ✅ YES → Check if scripts/scrape_content.py exists
+            └─ ❌ NO → Run: source venv/bin/activate
+```
+
+---
+
+**You're ready to start! Begin with VSCODE_SETUP_GUIDE.md Part 1! 🚀**

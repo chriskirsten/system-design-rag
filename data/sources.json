@@ -1,0 +1,84 @@
+{
+  "sources": [
+    {
+      "name": "System Design Primer",
+      "url": "https://github.com/donnemartin/system-design-primer",
+      "type": "github",
+      "description": "Comprehensive collection of system design topics",
+      "topics": ["general", "scalability", "architecture"],
+      "priority": "high",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "name": "High Scalability",
+      "url": "http://highscalability.com/",
+      "type": "blog",
+      "description": "Real-world architecture case studies",
+      "topics": ["scalability", "architecture", "case-studies"],
+      "priority": "high",
+      "license": "public"
+    },
+    {
+      "name": "AWS Architecture Blog",
+      "url": "https://aws.amazon.com/blogs/architecture/",
+      "type": "blog",
+      "description": "Cloud architecture patterns and best practices",
+      "topics": ["cloud", "architecture", "aws"],
+      "priority": "medium",
+      "license": "public"
+    },
+    {
+      "name": "Martin Fowler - Architecture",
+      "url": "https://martinfowler.com/architecture/",
+      "type": "articles",
+      "description": "Software architecture patterns and principles",
+      "topics": ["architecture", "patterns", "microservices"],
+      "priority": "high",
+      "license": "public"
+    },
+    {
+      "name": "Database Internals",
+      "url": "https://www.databass.dev/",
+      "type": "documentation",
+      "description": "Database systems and internals",
+      "topics": ["databases", "storage", "indexing"],
+      "priority": "medium",
+      "license": "public"
+    }
+  ],
+  "categories": [
+    "scalability",
+    "performance",
+    "databases",
+    "api-design",
+    "architecture",
+    "security",
+    "caching",
+    "messaging",
+    "storage",
+    "networking",
+    "microservices",
+    "cloud",
+    "monitoring"
+  ],
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "content_guidelines": {
+    "min_length": 100,
+    "max_length": 50000,
+    "min_tags": 1,
+    "max_tags": 10,
+    "required_fields": ["id", "title", "category", "content", "tags"],
+    "optional_fields": ["source", "url", "difficulty", "timestamp", "author"]
+  },
+  "scraping_rules": {
+    "respect_robots_txt": true,
+    "rate_limit_seconds": 2,
+    "max_retries": 3,
+    "timeout_seconds": 30,
+    "user_agent": "System-Design-RAG-Bot/1.0"
+  }
+}

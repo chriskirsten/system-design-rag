@@ -1,0 +1,15 @@
+{
+  "id": "load-balancing-basics",
+  "title": "Load Balancing Fundamentals",
+  "category": "scalability",
+  "content": "Load balancing is the process of distributing network traffic across multiple servers to ensure no single server bears too much demand. By spreading the work evenly, load balancing improves application responsiveness and increases availability of applications and websites for users.\n\nKey concepts:\n- Load balancers act as a reverse proxy and distribute network or application traffic across multiple servers\n- They improve application availability and responsiveness\n- They prevent any one server from becoming a single point of failure\n\nCommon load balancing algorithms:\n1. Round Robin: Distributes requests sequentially across servers\n2. Least Connections: Sends requests to server with fewest active connections\n3. IP Hash: Routes client to server based on client IP address\n4. Weighted Round Robin: Assigns weight to each server based on capacity\n\nTypes of Load Balancers:\n- Layer 4 (Transport Layer): Makes routing decisions based on IP and TCP/UDP port\n- Layer 7 (Application Layer): Makes routing decisions based on content of the request\n\nHealth checks are crucial - load balancers regularly check server health to avoid routing to failed servers.",
+  "source": "System Design Documentation",
+  "url": "https://example.com/load-balancing",
+  "tags": [
+    "load-balancing",
+    "scalability",
+    "infrastructure"
+  ],
+  "difficulty": "beginner",
+  "timestamp": "2025-11-16T04:51:16.980509"
+}

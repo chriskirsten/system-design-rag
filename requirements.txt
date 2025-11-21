@@ -1,0 +1,37 @@
+# System Design RAG - Python Dependencies (Python 3.13 Compatible)
+# Using flexible versions to avoid conflicts
+
+# Core dependencies
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# OpenAI
+openai>=1.40.0
+
+# Pinecone (Python 3.13 compatible)
+pinecone-client>=5.0.0
+
+# LangChain (for RAG utilities)
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langchain-community>=0.3.0
+
+# Text Processing
+tiktoken>=0.7.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+html2text
+
+# Data Processing
+numpy
+pandas
+
+# Utilities
+tqdm>=4.66.0
+colorama>=0.4.6
+pyyaml>=6.0
+
+# Development
+pytest
+black
+flake8

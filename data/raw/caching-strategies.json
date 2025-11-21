@@ -1,0 +1,16 @@
+{
+  "id": "caching-strategies",
+  "title": "Caching Strategies and Patterns",
+  "category": "performance",
+  "content": "Caching is a technique to store frequently accessed data in a fast storage layer to reduce latency and database load. Effective caching strategies are essential for building high-performance systems.\n\nCache Patterns:\n\n1. Cache-Aside (Lazy Loading):\n   - Application checks cache first\n   - If miss, load from database and populate cache\n   - Good for read-heavy workloads\n   - Pros: Only requested data is cached\n   - Cons: Cache misses result in three trips\n\n2. Write-Through:\n   - Write to cache and database simultaneously\n   - Ensures cache is always consistent\n   - Pros: Data never stale, reads are fast\n   - Cons: Higher write latency\n\n3. Write-Behind (Write-Back):\n   - Write to cache immediately, database later\n   - Batches writes for better performance\n   - Pros: Very fast writes\n   - Cons: Risk of data loss if cache fails\n\n4. Read-Through:\n   - Cache sits between application and database\n   - Cache loads data on miss automatically\n   - Pros: Simplified application logic\n   - Cons: First request always slow\n\nCache Eviction Policies:\n- LRU (Least Recently Used): Removes least recently accessed items\n- LFU (Least Frequently Used): Removes least frequently accessed items\n- FIFO (First In First Out): Removes oldest items first\n- TTL (Time To Live): Items expire after set time\n\nPopular caching technologies:\n- Redis: In-memory data structure store\n- Memcached: High-performance distributed memory cache\n- CDN: Content Delivery Network for static assets\n- Browser Cache: Client-side caching",
+  "source": "System Design Best Practices",
+  "url": "https://example.com/caching",
+  "tags": [
+    "caching",
+    "performance",
+    "redis",
+    "memcached"
+  ],
+  "difficulty": "intermediate",
+  "timestamp": "2025-11-16T04:51:16.980538"
+}

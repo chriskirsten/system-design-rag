@@ -1,0 +1,15 @@
+{
+  "id": "microservices-architecture",
+  "title": "Microservices Architecture Patterns",
+  "category": "architecture",
+  "content": "Microservices architecture structures an application as a collection of loosely coupled, independently deployable services. Each service is responsible for a specific business capability.\n\nKey Characteristics:\n- Single Responsibility: Each service does one thing well\n- Independently Deployable: Deploy without affecting other services\n- Decentralized Data: Each service manages its own database\n- Technology Diversity: Different services can use different tech stacks\n- Communication via APIs: Services communicate over network\n\nBenefits:\n- Scalability: Scale individual services independently\n- Flexibility: Use different technologies for different services\n- Resilience: Failure in one service doesn't crash entire system\n- Faster Development: Teams can work independently\n- Easier Testing: Test services in isolation\n\nChallenges:\n- Distributed System Complexity: Network latency, partial failures\n- Data Consistency: No ACID transactions across services\n- Testing: Integration testing is more complex\n- Deployment: More moving parts to manage\n- Monitoring: Need distributed tracing and logging\n\nCommunication Patterns:\n\n1. Synchronous (HTTP/REST):\n   - Direct request-response\n   - Simple but creates coupling\n   - Use for: Low latency requirements\n\n2. Asynchronous (Message Queue):\n   - Services communicate via events\n   - Loose coupling, better resilience\n   - Use for: Background processing, event-driven workflows\n\nAPI Gateway Pattern:\n- Single entry point for clients\n- Handles authentication, routing, rate limiting\n- Aggregates multiple service calls\n- Examples: Kong, AWS API Gateway, NGINX\n\nService Discovery:\n- Services register themselves\n- Clients query to find service locations\n- Tools: Consul, Eureka, etcd\n\nCircuit Breaker Pattern:\n- Prevents cascading failures\n- Stops calling failing service\n- Returns default response or error\n- Tools: Hystrix, Resilience4j\n\nData Management:\n- Database per Service: Each service owns its data\n- Saga Pattern: Manage distributed transactions\n- Event Sourcing: Store all changes as events\n- CQRS: Separate read and write models\n\nDeployment:\n- Containers (Docker) for consistency\n- Orchestration (Kubernetes) for management\n- CI/CD pipelines for automation\n- Blue-Green or Canary deployments",
+  "source": "Microservices Patterns",
+  "url": "https://example.com/microservices",
+  "tags": [
+    "microservices",
+    "architecture",
+    "distributed-systems"
+  ],
+  "difficulty": "advanced",
+  "timestamp": "2025-11-16T04:51:16.980549"
+}

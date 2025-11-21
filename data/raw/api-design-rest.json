@@ -1,0 +1,16 @@
+{
+  "id": "api-design-rest",
+  "title": "RESTful API Design Best Practices",
+  "category": "api-design",
+  "content": "REST (Representational State Transfer) is an architectural style for designing networked applications. Good API design is crucial for maintainability and developer experience.\n\nREST Principles:\n1. Client-Server: Separation of concerns\n2. Stateless: Each request contains all necessary information\n3. Cacheable: Responses explicitly indicate if they can be cached\n4. Uniform Interface: Consistent interaction patterns\n5. Layered System: Client doesn't know if connected to end server\n\nHTTP Methods:\n- GET: Retrieve resource (idempotent, safe)\n- POST: Create new resource\n- PUT: Update/replace entire resource (idempotent)\n- PATCH: Partial update of resource\n- DELETE: Remove resource (idempotent)\n\nURL Design Best Practices:\n- Use nouns, not verbs: /users not /getUsers\n- Use plural names: /users/123 not /user/123\n- Hierarchical relationships: /users/123/posts\n- Filter with query parameters: /users?active=true&role=admin\n- Versioning: /v1/users or /api/v1/users\n\nStatus Codes:\n- 2xx Success:\n  - 200 OK: Standard success\n  - 201 Created: Resource created\n  - 204 No Content: Success with no body\n- 3xx Redirection:\n  - 301 Moved Permanently\n  - 302 Found (temporary redirect)\n- 4xx Client Errors:\n  - 400 Bad Request: Invalid data\n  - 401 Unauthorized: Authentication required\n  - 403 Forbidden: Authenticated but not authorized\n  - 404 Not Found: Resource doesn't exist\n  - 429 Too Many Requests: Rate limit exceeded\n- 5xx Server Errors:\n  - 500 Internal Server Error\n  - 503 Service Unavailable\n\nResponse Format:\n- Consistent JSON structure\n- Include metadata (pagination, timestamps)\n- Error responses with helpful messages\n- HATEOAS: Include links to related resources\n\nExample Response:\n{\n  \"data\": {...},\n  \"meta\": {\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total\": 100\n  },\n  \"links\": {\n    \"self\": \"/users?page=1\",\n    \"next\": \"/users?page=2\"\n  }\n}\n\nSecurity:\n- Always use HTTPS\n- Implement authentication (JWT, OAuth)\n- Rate limiting to prevent abuse\n- Input validation and sanitization\n- CORS configuration",
+  "source": "API Design Guidelines",
+  "url": "https://example.com/api-design",
+  "tags": [
+    "api-design",
+    "rest",
+    "http",
+    "web-services"
+  ],
+  "difficulty": "intermediate",
+  "timestamp": "2025-11-16T04:51:16.980545"
+}
