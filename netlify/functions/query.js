@@ -44,7 +44,7 @@ export async function handler(event, context) {
 
   try {
     // Parse request body
-    const { question, topK = 10 } = JSON.parse(event.body);
+    const { question, topK = 3 } = JSON.parse(event.body);
 
     if (!question || typeof question !== 'string') {
       return {
@@ -54,8 +54,6 @@ export async function handler(event, context) {
       };
     }
 
-    console.log('Processing question:', question);
-
     // Step 1: Generate embedding for the question
     const embeddingResponse = await openai.embeddings.create({
       model: 'text-embedding-3-small',
@@ -63,7 +61,6 @@ export async function handler(event, context) {
     });
 
     const questionEmbedding = embeddingResponse.data[0].embedding;
-    console.log('Generated question embedding');
 
     // Step 2: Search Pinecone for similar vectors
     const index = pc.index(indexName);
@@ -72,8 +69,6 @@ export async function handler(event, context) {
       topK: topK,
       includeMetadata: true,
     });
-
-    console.log(`Found ${searchResults.matches.length} matches`);
 
     // Check if we found any matches
     if (!searchResults.matches || searchResults.matches.length === 0) {
@@ -96,39 +91,42 @@ export async function handler(event, context) {
       })
       .join('\n\n---\n\n');
 
-    // Step 4: Generate answer using GPT-4
-  const systemPrompt = `You are a system design expert assistant. You have access to a curated knowledge base of system design concepts, code examples, and best practices.
+    // Step 4: Generate answer using GPT
+    const systemPrompt = `You are a system design expert assistant. You have access to a curated knowledge base.
 
-Your task is to provide detailed, accurate answers using the context provided. The context contains verified information including:
-- Technical explanations and concepts
-- Real code examples and configurations  
-- Implementation patterns and best practices
-- Links to authoritative resources
+When answering:
+1. Use markdown formatting extensively:
+   - Use ## for main section headers
+   - Use ### for subsection headers  
+   - Use **bold** for key terms and important concepts
+   - Use bullet points (-) for lists
+   - Use numbered lists (1., 2., 3.) for sequences
+   - Use code blocks with \`\`\` for code examples
+   - Add blank lines between sections for readability
 
-Instructions:
-1. When code examples, configurations, or specific technical details exist in the context, present them directly and confidently
-2. Use markdown code blocks to format any code or configuration examples
-3. Provide comprehensive explanations with technical depth
-4. Include specific details, algorithms, and examples from the context
-5. Structure your answer clearly with the most relevant information first
-6. Do not hedge or say information is missing if it clearly exists in the provided context
+2. Structure your answers clearly:
+   - Start with a brief overview
+   - Break content into logical sections with headers
+   - Use lists to organize information
+   - Include code examples where relevant
 
-The context provided is from a verified knowledge base - trust it and use it fully to answer the question.`;
+3. Be comprehensive and include specific details from the context.
+
+The context provided is from a verified knowledge base - trust it and use it fully.`;
 
     const userPrompt = `Context from knowledge base:\n\n${context}\n\n---\n\nQuestion: ${question}\n\nProvide a clear, accurate answer based on the context above.`;
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.3, // Lower temperature for more consistent, factual responses
+      temperature: 0.3,
       max_tokens: 800,
     });
 
     const answer = completion.choices[0].message.content;
-    console.log('Generated answer');
 
     // Step 5: Format sources
     const sources = searchResults.matches.map((match) => {
